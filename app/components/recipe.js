@@ -1,37 +1,45 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function FishRow({ name,image_url, population, fishing_rate, habitat_impacts, bycatch,score}) {
-    const navigation = useNavigation();
+export default function Recipe({ name,image_url, ingredients,directions }) {
+    const navigation = useNavigation();    
     return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
         <Text style={styles.name}>{name}</Text>
         <Image source={{ uri: image_url }} style={styles.photo} />
         <View style={styles.fishdeets}>
-            <Text style={styles.score}>{score}</Text>
-            <Text style={styles.attr}>POPULATION</Text>
+            
+            <Text style={styles.attr}>INGREDIENTS</Text>
             <Text style={styles.description}>
-                {population}
+            {ingredients.map((value, index) => {
+         return (
+             <Text key={index}>
+                {'•   '}{value}{'\n'}
+             </Text>
+          );
+         })
+      }
             </Text>
-            <Text style={styles.attr}>FISHING RATE</Text>
+            <Text style={styles.attr}>DIRECTIONS</Text>
             <Text style={styles.description}>
-                {fishing_rate}
+            {directions.map((value, index) => {
+         return (
+             <Text key={index}>
+                {index+1}{'  '}{value}{'\n'}
+             </Text>
+          );
+         })
+      }
             </Text>
-            <Text style={styles.attr}>HABITAT IMPACTS</Text>
-            <Text style={styles.description}>
-                {habitat_impacts}
-            </Text>
-            <Text style={styles.attr}>BYCATCH</Text>
-            <Text style={styles.description}>
-                {bycatch}
-            </Text>
+            
         </View>
-        <Text style={styles.deets} onPress={()=>navigation.navigate('TheFish')}>DETAILS</Text>
-    </View>
+        <Text style={styles.nutrition} onPress={()=>navigation.navigate('Review')}>REVIEWS</Text>
+        <Text style={styles.recipe} onPress={()=>navigation.navigate('RecipesOf')}>MORE LIKE THIS</Text>
+    </ScrollView>
 )}
-
+ 
 
 
 const styles = StyleSheet.create({
@@ -41,12 +49,12 @@ const styles = StyleSheet.create({
         padding: 10,
         marginLeft:16,
         marginRight:16,
-        marginTop: 8,
+        marginTop: 100,
         marginBottom: 8,
         borderRadius: 60,
         backgroundColor: '#D7EBED',
         alignSelf:'center',
-        justifyContent:'center',
+        paddingBottom:20,
         width:375
         
     },
@@ -65,7 +73,7 @@ const styles = StyleSheet.create({
         borderRadius:30,
         marginTop:'2%',
         alignSelf:'center',
-        resizeMode:'contain'
+        
         
     },
     fishdeets: {
@@ -73,7 +81,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginLeft: 30,
         marginTop:20,
-        marginRight: 30,
         justifyContent: 'center',
         
     },
@@ -81,8 +88,8 @@ const styles = StyleSheet.create({
         fontSize:40,
         fontFamily:'Avenir',
         position:'absolute',
-        top:'-25%',
-        right:'-2%',
+        top:'5%',
+        right:'5%',
         backgroundColor:'#379DA6',
         padding:'5%',
         borderRadius:35,
@@ -102,18 +109,36 @@ const styles = StyleSheet.create({
         fontFamily:'Futura',
         color:'#379DA6'
     },
-   deets:{
+   nutrition:{
        borderRadius:30,
        fontFamily:'Avenir',
        elevation:2,
        backgroundColor:'#379DA6',
        color:'#FFF',
-       fontSize:15,
+       fontSize:11,
        padding:'5%',
        textAlign:'center',
-       width:'50%',
-       left:'22.5%',
+       width:'30%',
+       left:'5%',
        marginTop:'5%',
        marginBottom:'7.5%',
-   }
+   },
+   recipe:{
+    borderRadius:30,
+    fontFamily:'Avenir',
+    elevation:2,
+    backgroundColor:'#379DA6',
+    color:'#FFF',
+    fontSize:11,
+    padding:'5%',
+    textAlign:'center',
+    width:'30%',
+    right:'5%',
+    bottom:'0%',
+    height:'3.25%',
+    marginBottom:'7.5%',
+    position:'absolute',
+    textAlignVertical:'center',
+
+}
 });

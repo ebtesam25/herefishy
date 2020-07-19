@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function FishProfile(){
-let [fontsLoaded]  = useFonts({
-    'Avenir': require('../assets/fonts/Avenir.ttf'),
-    'Futura': require('../assets/fonts/Futura.ttf'),
-  });
-  const Fish = ({ name,image_url, population, fishing_rate, habitat_impacts, bycatch,score, availability, source, taste, texture, color, health }) => (
-    <View style={styles.container}>
+
+export default function FishProfile({ name,image_url, population, fishing_rate, habitat_impacts, bycatch,score, availability, source, taste, texture, color, health }) {
+    const navigation = useNavigation();    
+    return (
+    <ScrollView style={styles.container}>
         <Text style={styles.name}>{name}</Text>
         <Image source={{ uri: image_url }} style={styles.photo} />
         <View style={styles.fishdeets}>
@@ -53,18 +52,12 @@ let [fontsLoaded]  = useFonts({
                 {health}
             </Text>
         </View>
-        <Text style={styles.deets} >DETAILS</Text>
-    </View>
-);
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-  else{
-      return Fish
-  }
+        <Text style={styles.nutrition} onPress={()=>navigation.navigate('FishNutrition')}>NUTRITION</Text>
+        <Text style={styles.recipe} >RECIPES</Text>
+    </ScrollView>
+)}
+ 
 
-
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -73,12 +66,12 @@ const styles = StyleSheet.create({
         padding: 10,
         marginLeft:16,
         marginRight:16,
-        marginTop: 8,
+        marginTop: 100,
         marginBottom: 8,
         borderRadius: 60,
         backgroundColor: '#D7EBED',
         alignSelf:'center',
-        justifyContent:'center',
+        paddingBottom:20,
         width:375
         
     },
@@ -97,6 +90,7 @@ const styles = StyleSheet.create({
         borderRadius:30,
         marginTop:'2%',
         alignSelf:'center',
+        resizeMode:'contain'
         
         
     },
@@ -113,7 +107,7 @@ const styles = StyleSheet.create({
         fontFamily:'Avenir',
         position:'absolute',
         top:'5%',
-        right:'20%',
+        right:'5%',
         backgroundColor:'#379DA6',
         padding:'5%',
         borderRadius:35,
@@ -133,18 +127,36 @@ const styles = StyleSheet.create({
         fontFamily:'Futura',
         color:'#379DA6'
     },
-   deets:{
+   nutrition:{
        borderRadius:30,
        fontFamily:'Avenir',
        elevation:2,
        backgroundColor:'#379DA6',
        color:'#FFF',
-       fontSize:15,
+       fontSize:11,
        padding:'5%',
        textAlign:'center',
-       width:'50%',
-       left:'22.5%',
+       width:'30%',
+       left:'5%',
        marginTop:'5%',
        marginBottom:'7.5%',
-   }
+   },
+   recipe:{
+    borderRadius:30,
+    fontFamily:'Avenir',
+    elevation:2,
+    backgroundColor:'#379DA6',
+    color:'#FFF',
+    fontSize:11,
+    padding:'5%',
+    textAlign:'center',
+    width:'30%',
+    right:'5%',
+    bottom:'0%',
+    height:'3.25%',
+    marginBottom:'7.5%',
+    position:'absolute',
+    textAlignVertical:'center',
+
+}
 });

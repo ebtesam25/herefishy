@@ -3,32 +3,16 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function FishRow({ name,image_url, population, fishing_rate, habitat_impacts, bycatch,score}) {
+export default function ReviewRow({ name,image_url,review}) {
     const navigation = useNavigation();
+    
     return (
     <View style={styles.container}>
         <Text style={styles.name}>{name}</Text>
-        <Image source={{ uri: image_url }} style={styles.photo} />
-        <View style={styles.fishdeets}>
-            <Text style={styles.score}>{score}</Text>
-            <Text style={styles.attr}>POPULATION</Text>
-            <Text style={styles.description}>
-                {population}
-            </Text>
-            <Text style={styles.attr}>FISHING RATE</Text>
-            <Text style={styles.description}>
-                {fishing_rate}
-            </Text>
-            <Text style={styles.attr}>HABITAT IMPACTS</Text>
-            <Text style={styles.description}>
-                {habitat_impacts}
-            </Text>
-            <Text style={styles.attr}>BYCATCH</Text>
-            <Text style={styles.description}>
-                {bycatch}
-            </Text>
-        </View>
-        <Text style={styles.deets} onPress={()=>navigation.navigate('TheFish')}>DETAILS</Text>
+        
+        <Text style={styles.score}>{review}</Text>
+        
+        
     </View>
 )}
 
@@ -46,8 +30,9 @@ const styles = StyleSheet.create({
         borderRadius: 60,
         backgroundColor: '#D7EBED',
         alignSelf:'center',
-        justifyContent:'center',
-        width:375
+        
+        width:375,
+        height:200,
         
     },
     name: {
@@ -65,7 +50,8 @@ const styles = StyleSheet.create({
         borderRadius:30,
         marginTop:'2%',
         alignSelf:'center',
-        resizeMode:'contain'
+        resizeMode:'contain',
+        
         
     },
     fishdeets: {
@@ -78,19 +64,18 @@ const styles = StyleSheet.create({
         
     },
     score:{
-        fontSize:40,
-        fontFamily:'Avenir',
+        fontSize:25,
+        fontFamily:'Futura',
         position:'absolute',
-        top:'-25%',
-        right:'-2%',
-        backgroundColor:'#379DA6',
+        top:'25%',
+        left:'7%',
+        
         padding:'5%',
         borderRadius:35,
-        color:'#fff',
-        width:70,
-        height:70,
+        color:'#379DA6',
+       
         textAlignVertical:'center',
-        textAlign:'center',
+        marginRight:'15%',
     },
     attr:{
         fontFamily:'Avenir',

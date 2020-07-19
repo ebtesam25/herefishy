@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
-import FishList from '../components/fishlist';
+import GameList from '../components/gamelist';
 
 
 let customFonts  = {
@@ -13,9 +13,10 @@ let customFonts  = {
 
 
 
-export default class FishByState extends React.Component  {
+export default class Game extends React.Component  {
   state = {
     fontsLoaded: false,
+    score: 0,
   };
 
   async _loadFontsAsync() {
@@ -31,23 +32,22 @@ export default class FishByState extends React.Component  {
     return  [
     {
       
-    name:"Wreckfish",
-    image_url:"https://www.fishwatch.gov/sites/default/files/wreckfish.png", 
-    population:"Above target population level.", 
-    fishing_rate:"At recommended level.", 
-    score: "5",
-    habitat_impacts:"Fishing gear used to catch wreckfish has minimal impacts on habitat.",
-    bycatch:"Bycatch is low because fishermen use a very selective method—bottom hook-and-line gear with hydraulic reels—to catch wreckfish."
+    name:"Atlantic Wahoo",
+    image_url:"https://www.fishwatch.gov/sites/default/files/atlantic_wahoo.png", 
+    score: 1
+    
   },
   {
     
-    name:"Atlantic Wahoo ",
-    image_url:"https://www.fishwatch.gov/sites/default/files/atlantic_wahoo.png", 
-    population:"The population level is unknown, but presumed stable.", 
-    fishing_rate:"At recommended level.", 
-    score: "5",
-    habitat_impacts:"Fishing gears used to harvest Atlantic wahoo have minimal impacts on habitat.",
-    bycatch:"Bycatch is low because hook-and-line, cast net, and gillnet gear are selective."
+    name:"Chinook Salmon",
+    image_url:"https://www.fishwatch.gov/sites/default/files/chinook_salmon.png", 
+    score: 1
+  },
+  {
+    
+    name:"Tuna: Yellowfin",
+    image_url:"https://hawaii-seafood.org/wp-content/uploads/2015/06/Yellowfin.gif", 
+    score: -1
   },
   ]
   }
@@ -59,11 +59,10 @@ export default class FishByState extends React.Component  {
     return (
     <View style={styles.container}>
       <Image source={require('../assets/images/menu.png')} style={styles.menu}></Image>
-      <Text style={{position:'absolute',top:'4%',fontSize:30,color:'transparent',zIndex:5}} onPress={()=>this.props.navigation.navigate('Shop')}>MENU</Text>
       <Image source={require('../assets/images/logo.png')} style={styles.logo}></Image>
-      <Text style={styles.line}>Best Choice for <Text style={{color:'#379DA6'}} onPress={()=>this.props.navigation.navigate('Game')}>Florida</Text></Text>
+      
       <ScrollView style={styles.scrollcontainer}>
-      <FishList itemList={this.getData()}/>
+      <GameList itemList={this.getData()}/>
       </ScrollView>
     </View>
     );
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
   scrollcontainer: {
     height:'100%',
     position:'relative',
-    
+    marginTop:'20%'
   },
   menu:{
     position:'absolute',

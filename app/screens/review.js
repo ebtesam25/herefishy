@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
-import FishList from '../components/fishlist';
+import ReviewList from '../components/reviewlist';
 
 
 let customFonts  = {
@@ -13,9 +13,10 @@ let customFonts  = {
 
 
 
-export default class FishByState extends React.Component  {
+export default class Review extends React.Component  {
   state = {
     fontsLoaded: false,
+    score: 0,
   };
 
   async _loadFontsAsync() {
@@ -31,23 +32,22 @@ export default class FishByState extends React.Component  {
     return  [
     {
       
-    name:"Wreckfish",
-    image_url:"https://www.fishwatch.gov/sites/default/files/wreckfish.png", 
-    population:"Above target population level.", 
-    fishing_rate:"At recommended level.", 
-    score: "5",
-    habitat_impacts:"Fishing gear used to catch wreckfish has minimal impacts on habitat.",
-    bycatch:"Bycatch is low because fishermen use a very selective method—bottom hook-and-line gear with hydraulic reels—to catch wreckfish."
+    name:"Phoebe",
+    image_url:"https://www.fishwatch.gov/sites/default/files/atlantic_wahoo.png", 
+    review: "Yum! Absolutely delicious"
+    
   },
   {
     
-    name:"Atlantic Wahoo ",
-    image_url:"https://www.fishwatch.gov/sites/default/files/atlantic_wahoo.png", 
-    population:"The population level is unknown, but presumed stable.", 
-    fishing_rate:"At recommended level.", 
-    score: "5",
-    habitat_impacts:"Fishing gears used to harvest Atlantic wahoo have minimal impacts on habitat.",
-    bycatch:"Bycatch is low because hook-and-line, cast net, and gillnet gear are selective."
+    name:"Monica",
+    image_url:"https://www.fishwatch.gov/sites/default/files/chinook_salmon.png", 
+    review: "Not as simple as it looks, but if you have the patience it's absolutely worth it!"
+  },
+  {
+    
+    name:"Rachel",
+    image_url:"https://hawaii-seafood.org/wp-content/uploads/2015/06/Yellowfin.gif", 
+    review: " Meh. Not the best"
   },
   ]
   }
@@ -59,12 +59,12 @@ export default class FishByState extends React.Component  {
     return (
     <View style={styles.container}>
       <Image source={require('../assets/images/menu.png')} style={styles.menu}></Image>
-      <Text style={{position:'absolute',top:'4%',fontSize:30,color:'transparent',zIndex:5}} onPress={()=>this.props.navigation.navigate('Shop')}>MENU</Text>
       <Image source={require('../assets/images/logo.png')} style={styles.logo}></Image>
-      <Text style={styles.line}>Best Choice for <Text style={{color:'#379DA6'}} onPress={()=>this.props.navigation.navigate('Game')}>Florida</Text></Text>
+      <Text style={styles.line}>Reviews{'\n'}<Text style={{color:"#379DA6"}}>Grilled Wreckfish</Text></Text>
       <ScrollView style={styles.scrollcontainer}>
-      <FishList itemList={this.getData()}/>
+      <ReviewList itemList={this.getData()}/>
       </ScrollView>
+      <Text style={styles.deets} onPress={()=>navigation.navigate('TheRecipe')}>ADD REVIEW</Text>
     </View>
     );
     }
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   scrollcontainer: {
     height:'100%',
     position:'relative',
-    
+    marginTop:'5%'
   },
   menu:{
     position:'absolute',
@@ -113,6 +113,19 @@ const styles = StyleSheet.create({
     lineHeight:60,
     color:'#1C353D'
   },
-
+  deets:{
+    borderRadius:30,
+    fontFamily:'Avenir',
+    elevation:2,
+    backgroundColor:'#379DA6',
+    color:'#FFF',
+    fontSize:15,
+    padding:'5%',
+    textAlign:'center',
+    width:'50%',
+    left:'22.5%',
+    marginTop:'5%',
+    marginBottom:'7.5%',
+}
   
 });

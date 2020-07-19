@@ -27,7 +27,7 @@ export default class Splash extends React.Component  {
     return (
     <View style={styles.container}>
       <ImageBackground source={require('../assets/images/splash.png')} style={styles.header}></ImageBackground>
-      <Text style={{position:'absolute',zIndex:3,fontSize:150,top:100,left:'20%', color:'#fff'}}onPress={()=>this.props.navigation.navigate('State')}>NEXT</Text>
+      <Text style={{position:'absolute',zIndex:3,fontSize:150,top:100,left:'20%', color:'transparent'}}onPress={()=>this.props.navigation.navigate('State')}>NEXT</Text>
     </View>
     );
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
-import FishRow from './fishrow';
+import ReviewRow from './reviewrow';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,19 +9,15 @@ const styles = StyleSheet.create({
 });
 
 
-const FishList = ({ itemList}) => (
+const ReviewList = ({ itemList}) => (
     <View style={styles.container}>
         
         <FlatList
                 data={itemList}
-                renderItem={({ item }) => <FishRow
+                renderItem={({ item }) => <ReviewRow
                     name={item.name}
                     image_url={item.image_url}
-                    population={item.population} 
-                    fishing_rate={item.fishing_rate}
-                    score={item.score} 
-                    habitat_impacts={item.habitat_impacts} 
-                    bycatch={item.bycatch}
+                    review = {item.review}
                     
                 />}
             />
@@ -29,4 +25,4 @@ const FishList = ({ itemList}) => (
     </View>
 );
 
-export default FishList;
+export default ReviewList;

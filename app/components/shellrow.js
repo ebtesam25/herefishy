@@ -3,32 +3,15 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function FishRow({ name,image_url, population, fishing_rate, habitat_impacts, bycatch,score}) {
+export default function ShellRow({ name,image_url, price, prize}) {
     const navigation = useNavigation();
     return (
     <View style={styles.container}>
         <Text style={styles.name}>{name}</Text>
         <Image source={{ uri: image_url }} style={styles.photo} />
-        <View style={styles.fishdeets}>
-            <Text style={styles.score}>{score}</Text>
-            <Text style={styles.attr}>POPULATION</Text>
-            <Text style={styles.description}>
-                {population}
-            </Text>
-            <Text style={styles.attr}>FISHING RATE</Text>
-            <Text style={styles.description}>
-                {fishing_rate}
-            </Text>
-            <Text style={styles.attr}>HABITAT IMPACTS</Text>
-            <Text style={styles.description}>
-                {habitat_impacts}
-            </Text>
-            <Text style={styles.attr}>BYCATCH</Text>
-            <Text style={styles.description}>
-                {bycatch}
-            </Text>
-        </View>
-        <Text style={styles.deets} onPress={()=>navigation.navigate('TheFish')}>DETAILS</Text>
+        <Text style={styles.attr}>PRICE</Text>
+        <Text style={styles.description}>{price}</Text>
+        <Text style={styles.deets} onPress={()=>navigation.navigate(prize)}>BUY</Text>
     </View>
 )}
 
@@ -65,7 +48,7 @@ const styles = StyleSheet.create({
         borderRadius:30,
         marginTop:'2%',
         alignSelf:'center',
-        resizeMode:'contain'
+        
         
     },
     fishdeets: {
@@ -81,7 +64,7 @@ const styles = StyleSheet.create({
         fontSize:40,
         fontFamily:'Avenir',
         position:'absolute',
-        top:'-25%',
+        top:'5%',
         right:'-2%',
         backgroundColor:'#379DA6',
         padding:'5%',
@@ -95,12 +78,16 @@ const styles = StyleSheet.create({
     attr:{
         fontFamily:'Avenir',
         fontSize:20,
-        color:'#1C353D'
+        color:'#1C353D',
+        marginLeft:'10%',
+        marginTop:'2%'
     },
     description: {
         fontSize: 18,
         fontFamily:'Futura',
-        color:'#379DA6'
+        color:'#379DA6',
+        marginLeft:'10%',
+        marginTop:'2%'
     },
    deets:{
        borderRadius:30,
