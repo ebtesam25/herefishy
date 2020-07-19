@@ -1,18 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
 export default function GameRow({ name,image_url,score}) {
     const navigation = useNavigation();
+    let[value, setValue] = useState(0);
     
     return (
     <View style={styles.container}>
         <Text style={styles.name}>{name}</Text>
         <Image source={{ uri: image_url }} style={styles.photo} />
-        <Text style={styles.score}>{score}</Text>
-        <Text style={styles.deets}  onPress={()=>score+1}>SELECT</Text>
-        {console.log(score)}
+        <Text style={styles.score}>{value}</Text>
+        <Text style={styles.deets}  onPress={()=>setValue(value+score)}>SELECT</Text>
+        {console.log(value)}
     </View>
 )}
 

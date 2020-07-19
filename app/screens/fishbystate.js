@@ -25,8 +25,9 @@ export default class FishByState extends React.Component  {
 
   componentDidMount() {
     this._loadFontsAsync();
-  }
-
+    
+    }
+ 
   getData() {
     return  [
     {
@@ -41,7 +42,7 @@ export default class FishByState extends React.Component  {
   },
   {
     
-    name:"Atlantic Wahoo ",
+    name:"Atlantic wahoo",
     image_url:"https://www.fishwatch.gov/sites/default/files/atlantic_wahoo.png", 
     population:"The population level is unknown, but presumed stable.", 
     fishing_rate:"At recommended level.", 

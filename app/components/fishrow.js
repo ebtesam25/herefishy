@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function FishRow({ name,image_url, population, fishing_rate, habitat_impacts, bycatch,score}) {
+export default function FishRow({ route,name,image_url, population, fishing_rate, habitat_impacts, bycatch,score}) {
     const navigation = useNavigation();
     return (
     <View style={styles.container}>

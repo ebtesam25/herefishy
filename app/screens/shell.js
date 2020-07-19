@@ -41,7 +41,7 @@ export default class Shell extends React.Component  {
   },
   {
     
-    name:"Mussle Shells",
+    name:"Mussel Shells",
     image_url:"https://i.pinimg.com/originals/5c/d9/e9/5cd9e9edb567f4005b6bf5f47b4f6a01.jpg", 
     price:"$200"
   },

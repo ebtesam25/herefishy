@@ -5,6 +5,22 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Nutrition({ name,image_url, servings,serving_weight,calories,protein,fat,saturated,carbohydrate,sugars,fiber,cholesterol,selenium,sodium }) {
     const navigation = useNavigation();    
+    fetch('https://us-central1-aiot-fit-xlab.cloudfunctions.net/getfishnutrition', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              "fish": "Wreckfish"
+          })
+  })
+      .then((response) => response.json())
+      .then((responseJson) => {
+  console.log(responseJson.profiles);
+      })
+      .catch((error) => {
+          console.error(error);
+      });
     return (
     <ScrollView style={styles.container}>
         <Text style={styles.name}>{name}</Text>

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import ReviewList from '../components/reviewlist';
-
+import AddReview from '../components/addreview';
 
 let customFonts  = {
   'Avenir': require('../assets/fonts/Avenir.ttf'),
@@ -24,8 +24,28 @@ export default class Review extends React.Component  {
     this.setState({ fontsLoaded: true });
   }
 
+  
+    
+
+
   componentDidMount() {
     this._loadFontsAsync();
+    fetch('https://us-central1-aiot-fit-xlab.cloudfunctions.net/getrecipesbyfishdish', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "reviews": "fish tacos"
+        })
+})
+    .then((response) => response.json())
+    .then((responseJson) => {
+console.log(responseJson.reviews);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
   }
 
   getData() {
@@ -33,20 +53,20 @@ export default class Review extends React.Component  {
     {
       
     name:"Phoebe",
-    image_url:"https://www.fishwatch.gov/sites/default/files/atlantic_wahoo.png", 
+    
     review: "Yum! Absolutely delicious"
     
   },
   {
     
     name:"Monica",
-    image_url:"https://www.fishwatch.gov/sites/default/files/chinook_salmon.png", 
+    
     review: "Not as simple as it looks, but if you have the patience it's absolutely worth it!"
   },
   {
     
     name:"Rachel",
-    image_url:"https://hawaii-seafood.org/wp-content/uploads/2015/06/Yellowfin.gif", 
+    
     review: " Meh. Not the best"
   },
   ]
@@ -63,8 +83,9 @@ export default class Review extends React.Component  {
       <Text style={styles.line}>Reviews{'\n'}<Text style={{color:"#379DA6"}}>Grilled Wreckfish</Text></Text>
       <ScrollView style={styles.scrollcontainer}>
       <ReviewList itemList={this.getData()}/>
+      <AddReview/>
       </ScrollView>
-      <Text style={styles.deets} onPress={()=>navigation.navigate('TheRecipe')}>ADD REVIEW</Text>
+      
     </View>
     );
     }

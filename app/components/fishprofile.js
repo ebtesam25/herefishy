@@ -3,8 +3,26 @@ import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function FishProfile({ name,image_url, population, fishing_rate, habitat_impacts, bycatch,score, availability, source, taste, texture, color, health }) {
-    const navigation = useNavigation();    
+export default function FishProfile({ route,name,image_url, population, fishing_rate, habitat_impacts, bycatch,score, availability, source, taste, texture, color, health }) {
+    const navigation = useNavigation();  
+    
+    
+    fetch('https://us-central1-aiot-fit-xlab.cloudfunctions.net/getfishprofile', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              "fish": "Wreckfish"
+          })
+  })
+      .then((response) => response.json())
+      .then((responseJson) => {
+  console.log(responseJson.profiles);
+      })
+      .catch((error) => {
+          console.error(error);
+      });
     return (
     <ScrollView style={styles.container}>
         <Text style={styles.name}>{name}</Text>
